@@ -5,7 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import MapView, { Marker } from "react-native-maps";
 
 export default function App() {
-  const [location, setLocation] = useState<Location.LocationObject | null>(
+const [location, setLocation] = useState<Location.LocationObject | null>(
     null
   );
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -24,7 +24,6 @@ export default function App() {
 
     getCurrentLocation();
   }, []);
-
   return (
     <>
       <View style={estilos.container}>
