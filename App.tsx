@@ -103,8 +103,10 @@ const estilos = StyleSheet.create({
   },
   botaoMarcar: {
     color: "#fff",
-    backgroundColor: "#68ddbd",
+    backgroundColor: "#47d7c7",
     fontSize: 20,
+    fontFamily: "Arial",
+    fontWeight: "400",
     borderRadius: 10,
     marginTop: 50,
     alignItems: "center",
