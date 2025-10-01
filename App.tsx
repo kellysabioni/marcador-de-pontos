@@ -117,9 +117,10 @@ const estilos = StyleSheet.create({
   },
   mapa: {
     width: "95%",
-    height: 300,
+    height: 300,    
     overflow: "hidden", // Garante que o mapa respeite o borderRadius
     alignSelf: "center", // Centraliza horizontalmente
     marginVertical: 30, // Espaço vertical para centralizar melhor
   },
 });
+ 
