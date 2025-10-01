@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 // Importa biblioteca de localização do Expo
 import * as Location from "expo-location";
@@ -64,6 +64,19 @@ export default function App() {
   }, 
   []); // [] garante que o relógio começa a rodar apenas uma vez
 
+  // Função que será chamada ao clicar no botão
+  const marcarPosicao = () => {
+    if (!location) {
+      Alert.alert("Erro", "Localização ainda não carregada.");
+      return;
+    }
+ 
+    const dataAtual = new Date();
+    const mensagem = `Ponto registrado com sucesso!\n\n📍 Localização:\nLatitude: ${location.coords.latitude}\nLongitude: ${location.coords.longitude}\n\n🕒 Data: ${dataAtual.toLocaleDateString()}\nHora: ${dataAtual.toLocaleTimeString()}`;
+ 
+    Alert.alert("Confirmação", mensagem);
+  };
+
   return (
     <>
       <View style={estilos.container}>  
@@ -108,10 +121,8 @@ export default function App() {
         </View>
 
         {/* Botão (sem função ainda) */}
-        <Pressable style={estilos.botaoMarcar}>
-          <Text style={{ color: "white", fontSize: 20 }}>
-            Marcar minha posição
-          </Text>
+        <Pressable style={estilos.botaoMarcar} onPress={marcarPosicao} >
+          <Text style={estilos.textoBotaoMarcar} > Marcar minha posição </Text>
         </Pressable>
       </View>
     </>
@@ -153,12 +164,8 @@ const estilos = StyleSheet.create({
     fontSize: 18,
     color: "#222",
   },
-  botaoMarcar: {
-    color: "#fff",
-    backgroundColor: "#47d7c7",
-    fontSize: 20,
-    fontFamily: "Arial",
-    fontWeight: "400",
+  botaoMarcar: {    
+    backgroundColor: "#47d7c7",    
     borderRadius: 10, // Borda arredondada
     marginTop: 50, // Espaço do topo
     alignItems: "center",
@@ -169,6 +176,13 @@ const estilos = StyleSheet.create({
     shadowRadius: 4,
     elevation: 4, // Sombra no Android
   },
+  textoBotaoMarcar: {
+    color: "#f0f0f0",
+    fontSize: 20,
+    fontFamily: "Arial",
+    fontWeight: "bold",
+  },
+
   mapa: {
     width: "95%",
     height: 300,
